@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS employees (
   salary_updated_at timestamptz
 );
 
-CREATE INDEX IF NOT EXISTS employees_name_idx ON employees (display_name, id);
 CREATE INDEX IF NOT EXISTS employees_country_department_idx ON employees (country, department);
 
 CREATE TABLE IF NOT EXISTS salary_changes (

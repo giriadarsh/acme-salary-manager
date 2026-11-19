@@ -69,7 +69,7 @@ h3 { font-size: 1.04rem; letter-spacing: -.02em; }
 .button.icon { padding: 0; width: 34px; min-height: 34px; font-size: 1.25rem; }
 .button.small { padding: 4px 9px; min-height: 32px; }
 .button:disabled { opacity: .45; }
-.table-scroll { overflow-x: auto; }
+.table-scroll { position: relative; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: .87rem; white-space: nowrap; }
 th { padding: 12px 15px; text-align: left; font-size: .74rem; background: #f1f5f3; color: #4b625e; border-block: 1px solid var(--border); }
 td { padding: 11px 15px; border-bottom: 1px solid #e8eeeb; }

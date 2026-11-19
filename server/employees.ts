@@ -15,9 +15,9 @@ export async function listEmployees(pool: Pool, filters: EmployeeFilters): Promi
   const { rows: [result] } = await pool.query<{ total: number; items: Employee[] }>(`WITH matching AS (
     SELECT * FROM employees WHERE ${filter}
   ), page_rows AS (
-    SELECT ${EMPLOYEE_COLUMNS} FROM matching ORDER BY display_name, id LIMIT $4 OFFSET $5
+    SELECT ${EMPLOYEE_COLUMNS} FROM matching ORDER BY id LIMIT $4 OFFSET $5
   ) SELECT (SELECT count(*)::integer FROM matching) AS total,
-    COALESCE((SELECT json_agg(p ORDER BY p.name, p.id) FROM page_rows p), '[]'::json) AS items`,
+    COALESCE((SELECT json_agg(p ORDER BY p.id) FROM page_rows p), '[]'::json) AS items`,
   [...values, PAGE_SIZE, (filters.page - 1) * PAGE_SIZE]);
   return { ...result, page: filters.page, pageSize: PAGE_SIZE };
 }

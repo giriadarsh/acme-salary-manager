@@ -55,6 +55,7 @@ test('seed generates 10,000 repeatable, unique employee codes with valid salarie
   const records = createEmployees();
   assert.equal(records.length, 10_000);
   assert.equal(new Set(records.map(record => record.employee_code)).size, records.length);
+  assert.equal(new Set(records.map(record => record.display_name)).size, records.length);
   assert.equal(new Set(records.map(record => record.country)).size, 6);
   assert.ok(records.every(record => Number.isSafeInteger(record.salary_minor) && record.salary_minor > 0));
   assert.deepEqual(records.slice(0, 4), createEmployees(4));

@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import type { FilterOptions, Filters } from '../shared/compensation.ts';
 import { countryName } from './format.ts';
 
@@ -19,19 +20,20 @@ export function Brand() {
 export function FilterSelectors({ filters, options, onChange }: {
   filters: Filters; options: FilterOptions; onChange: (filters: Filters) => void;
 }) {
+  const prefix = useId();
   return <>
-    <label className="control"><span>Country</span>
-      <select value={filters.country} onChange={event => onChange({ ...filters, country: event.target.value })}>
+    <div className="control"><label htmlFor={`${prefix}-country`}>Country</label>
+      <select id={`${prefix}-country`} value={filters.country} onChange={event => onChange({ ...filters, country: event.target.value })}>
         <option value="">All countries</option>
         {options.countries.map(country => <option key={country} value={country}>{countryName(country)}</option>)}
       </select>
-    </label>
-    <label className="control"><span>Department</span>
-      <select value={filters.department} onChange={event => onChange({ ...filters, department: event.target.value })}>
+    </div>
+    <div className="control"><label htmlFor={`${prefix}-department`}>Department</label>
+      <select id={`${prefix}-department`} value={filters.department} onChange={event => onChange({ ...filters, department: event.target.value })}>
         <option value="">All departments</option>
         {options.departments.map(department => <option key={department}>{department}</option>)}
       </select>
-    </label>
+    </div>
   </>;
 }
 
